@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfSongListDao">
+    <!--查询首页5歌单-->
+    <select id="selectSongListMain" resultType="com.cjj.entity.SongList">
+        select sl_id,sl_name,sl_imgAddress,sl_title,sl_tag,sl_detail from song_list where sl_main='main'
+    </select>
+    <!--根据id获取歌单-->
+    <select id="selectSongListByID" resultType="com.cjj.entity.SongList" parameterType="int">
+        select sl_id,sl_name,sl_imgAddress,sl_title,sl_tag,sl_detail from song_list where sl_id=#{sl_id}
+    </select>
+    <!--查询全部歌单-->
+    <select id="selectAllSongLists" resultType="com.cjj.entity.SongList">
+        select sl_id,sl_name,sl_imgAddress,sl_title,sl_tag,sl_detail from song_list
+    </select>
+    <!--查询最新歌单-->
+    <select id="selectNewSongLists" resultType="com.cjj.entity.SongList" parameterType="java.lang.String">
+        select sl_id,sl_name,sl_imgAddress,sl_title,sl_tag,sl_detail from song_list where sl_new=#{sl_new}
+    </select>
+    <!--查询最热歌单-->
+    <select id="selectHotSongLists" resultType="com.cjj.entity.SongList" parameterType="java.lang.String">
+        select sl_id,sl_name,sl_imgAddress,sl_title,sl_tag,sl_detail from song_list where sl_hot=#{sl_hot}
+    </select>
+</mapper>

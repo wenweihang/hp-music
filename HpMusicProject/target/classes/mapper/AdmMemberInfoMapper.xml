@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfAdminMemberInfoDao">
+    <!--查询所有会员信息的总数-->
+    <select id="selectSumMemberInfo" resultType="int">
+        select count(*) from member_info
+    </select>
+    <!--根据分页数据index和显示的行数查询会员信息 -->
+    <select id="getMemberInfoPage" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.MemberInfo">
+        select mif_id,uer_act,start_time,end_time,mif_type from member_info limit #{index},10
+    </select>
+</mapper>

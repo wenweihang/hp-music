@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cjj.dao.InfCollectDao">
+    <!--添加收藏的歌曲-->
+    <insert id="addSongCollect" parameterType="java.lang.Object">
+        insert into song_collection(uer_act,sg_id)values(#{uer_act},#{sg_id})
+    </insert>
+    <!--查询该用户收藏歌曲的id-->
+    <select id="selectSongCollectID"  resultType="int" parameterType="java.lang.String">
+        select sg_id from song_collection where uer_act=#{uer_act}
+    </select>
+    <!--根据用户名和歌曲id查询是否存在该歌曲的收藏-->
+    <select id="selectIsSongCollect" parameterType="java.lang.Object" resultType="int">
+        select count(*) from song_collection where uer_act=#{uer_act} and sg_id=#{sg_id}
+    </select>
+    <!--删除收藏的歌曲-->
+    <delete id="deleteSongCollect" parameterType="java.lang.Object">
+       delete from song_collection where uer_act=#{uer_act} and sg_id=#{sg_id}
+    </delete>
+    <!--添加收藏的歌单-->
+    <insert id="addSongListCollect" parameterType="java.lang.Object">
+        insert into songlist_collection(uer_act,sl_id)values(#{uer_act},#{sl_id})
+    </insert>
+    <!--查询该用户收藏歌单的id-->
+    <select id="selectSongListCollectID"  resultType="int" parameterType="java.lang.String">
+        select sl_id from songlist_collection where uer_act=#{uer_act} limit 0,4
+    </select>
+    <!--根据用户名和歌单id查询是否存在该歌单的收藏-->
+    <select id="selectIsSongListCollect" parameterType="java.lang.Object" resultType="int">
+        select count(*) from songlist_collection where uer_act=#{uer_act} and sl_id=#{sl_id}
+    </select>
+    <!--删除收藏的歌单-->
+    <delete id="deleteSongListCollect" parameterType="java.lang.Object">
+        delete from songlist_collection where uer_act=#{uer_act} and sl_id=#{sl_id}
+    </delete>
+</mapper>

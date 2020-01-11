@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfAdminSongListDao">
+    <!--获取歌单总数-->
+    <select id="selectSumSongList" resultType="int">
+        select count(*) from song_list
+    </select>
+    <!--获取所有歌单-->
+    <select id="selectSongList" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SongList">
+        select sl_id,sl_name,sl_main,sl_imgAddress,sl_title,sl_detail from song_list limit #{index},5
+    </select>
+    <!--添加歌单-->
+    <insert id="addSongList" parameterType="com.cjj.entity.SongList">
+        insert into song_list(sl_name,sl_title,sl_detail)values(#{sl_name},#{sl_title},#{sl_detail})
+    </insert>
+    <!--添加歌单封面-->
+    <update id="addSongListImg" parameterType="java.lang.String" >
+        update song_list set sl_imgAddress=#{sl_imgAddress} where sl_name=#{sl_name}
+    </update>
+    <!--删除歌单-->
+    <delete id="deleteSongList" parameterType="java.lang.String">
+        delete from song_list where sl_name=#{sl_name}
+    </delete>
+    <!--更新首页显示的歌单-->
+    <update id="updateSongList" parameterType="java.lang.Object">
+        update song_list set sl_main=#{sl_main} where sl_id=#{sl_id}
+    </update>
+</mapper>

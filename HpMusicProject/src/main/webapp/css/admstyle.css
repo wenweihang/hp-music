@@ -1,0 +1,621 @@
+body .admTips .layui-layer-btn a {
+    background-color: rgb(255, 87, 34);
+    border: 1px solid rgb(255, 87, 34);
+    width: 100px;
+    color: white;
+    font-weight: bold;
+}
+body .admTips .layui-layer-btn a:hover{
+    color: white;
+}
+/*修改框架样式*/
+.main-header .logo {
+    height: 60px;
+    line-height: 60px;
+}
+
+.skin-purple .main-header .logo {
+    background-color: rgb(34, 45, 50);
+    color: #fff;
+    border-bottom: 0 solid transparent
+}
+
+.skin-purple .main-header .logo:hover {
+    background-color: rgb(255, 87, 34)
+}
+
+.main-header .navbar {
+    margin-bottom: 0;
+    margin-left: 230px;
+    border: none;
+    min-height: 60px;
+    border-radius: 0;
+}
+
+.skin-purple .main-header .navbar {
+    background-color: rgb(236, 240, 245);
+}
+
+.main-header .sidebar-toggle {
+    padding: 20px 20px;
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle {
+    color: rgb(70, 70, 70);
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle:hover {
+    color: #f6f6f6;
+    background: rgb(255, 87, 34)
+}
+
+.myNav > ul > .myUser > a {
+    padding: 20px 30px 0 30px;
+    height: 60px;
+}
+
+.myNav > ul > .myUser:hover {
+    background-color: rgb(255, 87, 34);
+}
+
+.myUser .userName {
+    color: rgb(70, 70, 70);
+}
+
+.skin-purple .main-header li.user-header {
+    border: 1px solid rgb(236, 240, 245);
+    background-color: rgb(236, 240, 245);
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > p {
+    color: rgb(70, 70, 70);
+}
+
+/*导航侧栏*/
+.user-panel {
+    padding: 20px 0 10px 50px;
+}
+
+.user-panel > .info {
+    padding-left: 50px;
+}
+
+.sidebar-menu li.header {
+    text-align: center;
+    font-size: 16px;
+
+}
+
+.skin-purple .sidebar-menu > li.header {
+    background: #1a2226
+}
+
+.skin-purple .sidebar-menu > li:hover > a, .skin-purple .sidebar-menu > li.active > a {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: rgb(255, 87, 34)
+}
+
+.skin-purple .sidebar-menu > li:hover > a:hover, .skin-purple .sidebar-menu > li.active > a:hover {
+    border-left-color: #fff;
+    background: rgb(255, 87, 34);
+}
+
+/*导航侧栏*/
+
+/*修改框架样式*/
+
+.english-font {
+    font-family: "POGO Display";
+}
+
+/*login页面*/
+#admLogin-left-content {
+    float: left;
+}
+
+#admLogin-right-content {
+}
+
+#admLogin-right-content > div {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#admLogin-right-content .login-text {
+    margin-top: -18px;
+    margin-bottom: 18px;
+}
+
+#admLogin-right-content .log-text::-webkit-input-placeholder {
+    color: rgb(200, 200, 200);
+}
+
+#admLogin-right-content .log-text::-moz-placeholder {
+    color: rgb(200, 200, 200);
+}
+
+/*Qiaole图标*/
+#headIcon {
+    padding-top: 10px;
+}
+
+#loginAct {
+    color: rgb(80, 80, 80);
+}
+
+#loginPwd {
+    color: rgb(80, 80, 80);
+}
+
+#verificationCode {
+    border-right: none;
+    color: rgb(80, 80, 80);
+}
+
+#bt-login {
+    margin-top: 5px;
+    margin-left: -16px;
+    width: 300px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: rgb(255,87,34);
+    border-color: rgb(255,87,34);
+}
+
+#bt-login:hover {
+    background-color: rgb(220,87,34);
+    border-color: rgb(220,87,34);
+}
+
+#reRegister {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+#reRegister > p {
+    font-size: 13px;
+}
+
+#reRegister > p > span {
+    color: rgb(40, 40, 40);
+}
+
+#reRegister > p > a {
+    text-decoration: none;
+    color: #005cbf;
+}
+
+#forgetPwd {
+}
+
+#forgetPwd > div {
+    border-left: none;
+    background-color: white;
+}
+
+#forgetPwd a {
+    text-decoration: none;
+    color: #005cbf;
+    font-size: 13px;
+}
+
+#verifCode {
+}
+
+#log-icon2 {
+    position: absolute;
+    top: 32%;
+    left: 28px;
+}
+
+#log-icon2 > img {
+    width: 115px;
+    height: 115px;
+}
+
+/*login页面*/
+/*register页面*/
+.prepend {
+    border: 1px solid rgb(205, 205, 205);
+    padding: 6px 10px 0px 10px
+}
+
+.prepend img {
+    width: 24px;
+    height: 26px;
+}
+
+#admRegister-left-content {
+    float: left;
+}
+
+#admRegister-right-content {
+}
+
+#admRegister-right-content > div {
+    padding: 0px 30px;
+}
+
+#admRegister-right-content > #title > h5 {
+    padding-top: 24px;
+    padding-bottom: 2px;
+    margin-left: 186px;
+}
+#admRegister-right-content .register-text{
+    margin-top: -18px;
+    margin-bottom: 18px;
+}
+#admRegister-right-content .reg-text::-webkit-input-placeholder {
+    color: rgb(200, 200, 200);
+}
+
+#admRegister-right-content .reg-text::-moz-placeholder {
+    color: rgb(200, 200, 200);
+}
+
+#registerAct {
+    color: rgb(80, 80, 80);
+}
+
+#registerPwd {
+    border-right: none;
+    color: rgb(80, 80, 80);
+}
+
+#regPwd-prepend > div {
+    background-color: white;
+    border-left: none;
+}
+
+#verificationCode {
+    color: rgb(80, 80, 80);
+}
+
+#bt-register {
+    margin-left: -16px;
+    width: 300px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: rgb(255,87,34);
+    border-color: rgb(255,87,34);
+}
+
+#bt-register:hover {
+    background-color: rgb(220,87,34);
+    border-color: rgb(220,87,34);
+}
+
+#serviceH {
+    margin-left: 200px;
+    margin-top: -8px;
+    text-align: center;
+}
+
+#serviceH p > span {
+    color: rgb(140, 140, 140);
+}
+
+#serviceH p > a {
+    text-decoration: none;
+    color: #005cbf;
+    font-size: 13px;
+}
+
+#reLogion {
+    margin-left: 200px;
+    margin-top: -4px;
+}
+
+#reLogion > p {
+    font-size: 13px;
+}
+
+#reLogion > p > span {
+    color: rgb(40, 40, 40);
+}
+
+#reLogion > p > a {
+    text-decoration: none;
+    color: #005cbf;
+}
+
+.form-group input {
+    color: rgb(220, 220, 220);
+}
+
+#reg-icon2 {
+    position: absolute;
+    top: 32%;
+    left: 28px;
+}
+
+#reg-icon2 > img {
+    width: 115px;
+    height: 115px;
+}
+/*register页面*/
+/*admHome页面*/
+.content-header {
+    padding: 0 15px
+}
+/*admHome页面*/
+/*admAddSongList*/
+#addSongList #title {
+    background-color: rgb(230, 230, 230);
+    height: 50px;
+    text-align: center;
+}
+
+#addSongList #title > h3 {
+    padding-top: 10px;
+    color: rgb(70, 70, 70)
+}
+
+#addSongList #addSongList-form {
+    margin-top: 30px;
+}
+
+#addSongList #addSongList-form label {
+    width: 100px;
+    font-size: 16px;
+}
+
+#addSongList #addSongList-form input {
+    width: 890px;
+}
+
+#addSongList #addSongList-form textarea {
+    width: 890px;
+}
+
+#addSongList #uploadImg {
+    margin-left: 45%;
+}
+
+#addSongList #uploadImg img {
+    width: 80px;
+    height: 80px;
+    margin-left: 7px;
+}
+
+#addSongList #bt {
+    margin-left: 26%;
+}
+
+#addSongList #bt button {
+    width: 120px;
+}
+#addSongList #test1 {
+    background-color: rgb(255,87,34);
+    color: #fff;
+
+}
+#addSongList .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+/*admAddSongList*/
+/*admAddSongToSL*/
+#addSongToSL #songListName{
+    color: rgb(150,150,150);
+}
+
+#addSongToSL .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+#addSongToSL #bt{
+    margin-top: 130px;
+    margin-left: 8%;
+}
+#addSongToSL #bt button {
+    width: 120px;
+}
+.layui-form-select dl dd.layui-this {
+    background-color: rgb(255,87,34);
+    color: #fff
+}
+/*admAddSongToSL*/
+/*admAddSingerInfo*/
+#addSingerInfo #title {
+    background-color: rgb(230, 230, 230);
+    height: 50px;
+    text-align: center;
+}
+
+#addSingerInfo #title > h3 {
+    padding-top: 10px;
+    color: rgb(70, 70, 70)
+}
+
+#addSingerInfo #addSingerInfo-form {
+    margin-top: 30px;
+}
+
+#addSingerInfo #addSingerInfo-form label {
+    width: 100px;
+    font-size: 16px;
+}
+#addSingerInfo #addSingerInfo-form .layui-input-block{
+    width: 890px;
+}
+#addSingerInfo #addSingerInfo-form .layui-input-inline{
+    margin-left: 10px;
+    width: 385px;
+}
+
+#addSingerInfo #addSingerInfo-form textarea {
+    width: 890px;
+}
+
+#addSingerInfo #uploadImg {
+    margin-left: 45%;
+}
+
+#addSingerInfo #uploadImg img {
+    width: 80px;
+    height: 80px;
+    margin-left: 7px;
+}
+
+#addSingerInfo #bt {
+    margin-left: 26%;
+}
+
+#addSingerInfo #bt button {
+    width: 120px;
+}
+#addSingerInfo #test1 {
+    background-color: rgb(255,87,34);
+    color: #fff;
+
+}
+#addSingerInfo .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+.btn-group-xs > .btn, .btn-xs{
+    padding: 2px 12px;
+    font-size: 13px;
+}
+.bg-olive {
+    background-color: rgb(255,87,34)
+}
+/*admAddSingerInfo*/
+/*admAddSong*/
+#addSong #title {
+    background-color: rgb(230, 230, 230);
+    height: 50px;
+    text-align: center;
+}
+
+#addSong #title > h3 {
+    padding-top: 10px;
+    color: rgb(70, 70, 70)
+}
+
+#addSong #addSong-form {
+    margin-top: 30px;
+}
+
+#addSong #addSong-form label {
+    width: 100px;
+    font-size: 16px;
+}
+#addSong #addSong-form .layui-input-block{
+    width: 890px;
+}
+#addSong #addSong-form .layui-input-inline{
+    margin-left: 10px;
+    width: 385px;
+}
+
+
+#addSong #bt {
+    margin-left: 26%;
+}
+
+#addSong #bt button {
+    width: 120px;
+}
+#addSong #test1 {
+    background-color: rgb(255,87,34);
+    color: #fff;
+
+}
+#addSong .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+#addSong #testList{
+    background-color:rgb(255,87,34) ;
+}
+/*admAddSong*/
+/*admAddZJ*/
+#addZJ #title {
+    background-color: rgb(230, 230, 230);
+    height: 50px;
+    text-align: center;
+}
+
+#addZJ #title > h3 {
+    padding-top: 10px;
+    color: rgb(70, 70, 70)
+}
+
+#addZJ #addZJ-form {
+    margin-top: 30px;
+}
+
+#addZJ #addZJ-form label {
+    width: 100px;
+    font-size: 16px;
+}
+#addZJ #addZJ-form .layui-input-block{
+    width: 890px;
+}
+#addZJ #addZJ-form .layui-input-inline{
+    margin-left: 10px;
+    width: 385px;
+}
+
+#addZJ #addZJ-form textarea {
+    width: 890px;
+}
+
+#addZJ #uploadImg {
+    margin-left: 45%;
+}
+
+#addZJ #uploadImg img {
+    width: 80px;
+    height: 80px;
+    margin-left: 7px;
+}
+
+#addZJ #bt {
+    margin-left: 26%;
+}
+
+#addZJ #bt button {
+    width: 120px;
+}
+#addZJ #test1 {
+    background-color: rgb(255,87,34);
+    color: #fff;
+
+}
+#addZJ .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+/*admAddZJ*/
+/*admAddSongToZJ*/
+#addSongToZJ #szj_id{
+    color: rgb(150,150,150);
+}
+
+#addSongToZJ .btC:hover{
+    background-color: rgb(255,87,34);
+    color: #fff;
+    border: 1px solid rgb(255,87,34);
+}
+#addSongToZJ #bt{
+    margin-top: 130px;
+    margin-left: 8%;
+}
+#addSongToZJ #bt button {
+    width: 120px;
+}
+
+.layui-form-select dl dd.layui-this {
+    background-color: rgb(255,87,34);
+    color: #fff
+}
+/*admAddSongToZJ*/

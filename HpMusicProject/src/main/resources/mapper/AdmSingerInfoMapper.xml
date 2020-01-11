@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfAdminSingerInfoDao">
+    <!--更新歌手信息-->
+    <update id="updateSingerInfo" parameterType="java.lang.Object">
+        update singer_info set sgr_hot=#{sgr_hot} where sgr_id=#{sgr_id}
+    </update>
+    <!--添加歌手信息-->
+    <insert id="addSingerInfo" parameterType="com.cjj.entity.SingerInfo">
+        insert into singer_info(sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region)
+        values(#{sgr_name},#{sgr_sex},#{sgr_imgAddress},#{sgr_detail},#{sgr_hot},#{sgr_firstLetter},#{sgr_region})
+    </insert>
+    <!--添加歌手封面图-->
+    <update id="addSingerInfoImg" parameterType="java.lang.String">
+        update singer_info set sgr_imgAddress=#{sgr_imgAddress} where sgr_name=#{sgr_name}
+    </update>
+    <!--查询搜索相关歌手的总数-->
+    <select id="selectSumSingerInfoByText" resultType="int" parameterType="java.lang.String">
+        select count(*) from singer_info where sgr_name like CONCAT('%',#{text},'%')
+    </select>
+    <!--查询搜索相关歌手-->
+    <select id="selectSingerInfoByText" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+        from singer_info where sgr_name like CONCAT('%',#{text},'%') limit #{index},36
+    </select>
+</mapper>

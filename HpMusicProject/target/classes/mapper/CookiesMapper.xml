@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfCookiesDao">
+    <!--根据用户帐号查询该用户登录的记录-->
+    <select id="selectSignInByAct" parameterType="java.lang.String" resultType="com.cjj.entity.UserSignIn">
+        select usi_id,uer_act,usi_startDay,usi_nextDay,usi_continueDay,usi_cookies from user_signin where uer_act=#{uer_act}
+    </select>
+    <!--将第一次登录签到的信息存入数据库-->
+    <insert id="addUserSignIn" parameterType="com.cjj.entity.UserSignIn">
+        insert into user_signin(uer_act,usi_startDay,usi_nextDay,usi_continueDay,usi_cookies)values
+        (#{uer_act},#{usi_startDay},#{usi_nextDay},#{usi_continueDay},#{usi_cookies})
+    </insert>
+    <!--更新连续登录中断信息-->
+    <update id="updateNoContinueSignIn" parameterType="com.cjj.entity.UserSignIn">
+        update user_signin set usi_startDay=#{usi_startDay},usi_nextDay=#{usi_nextDay},usi_continueDay=#{usi_continueDay} where uer_act=#{uer_act}
+    </update>
+    <!--更新连续登录信息-->
+    <update id="updateContinueSignIn" parameterType="com.cjj.entity.UserSignIn">
+        update user_signin set usi_nextDay=#{usi_nextDay},usi_continueDay=#{usi_continueDay} where uer_act=#{uer_act}
+    </update>
+    <!--获取签到天数-->
+    <select id="selectSignInDay" parameterType="java.lang.String" resultType="java.lang.String">
+        select usi_continueDay from user_signin where uer_act=#{uer_act}
+    </select>
+</mapper>

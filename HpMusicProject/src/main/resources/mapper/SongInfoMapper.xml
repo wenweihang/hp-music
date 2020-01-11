@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cjj.dao.InfSongInfoDao">
+    <!--查询对应歌单的所有歌曲-->
+    <select id="selectAll" parameterType="java.lang.String" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_songList,szj_id,sg_language
+          from song_info where sg_songList=#{sg_songList}
+    </select>
+    <!--根据歌单名查询歌曲总数-->
+    <select id="selectSumSong" parameterType="java.lang.String" resultType="int">
+        select count(*) from song_info where sg_songList=#{sg_songList}
+    </select>
+    <!--根据分页数据index和显示的行数查询歌曲 -->
+    <select id="selectSongPages" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_imgAddress,sg_time,sg_songList,sg_language
+          from song_info
+           <where>
+               <if test="sg_songList!=null">
+                   and sg_songList=#{sg_songList}
+               </if>
+               <if test="szj_id!=0">
+                   and szj_id=#{szj_id}
+               </if>
+           </where>
+           limit #{index},5
+    </select>
+    <!--根据歌曲名删除歌曲信息-->
+    <delete id="deleteSongInfo" parameterType="java.lang.String">
+        delete from song_info where sg_name=#{sg_name}
+    </delete>
+    <!--添加歌曲信息-->
+    <insert id="addSongInfo" parameterType="com.cjj.entity.SongInfo" >
+        insert into song_info(sg_name,sg_author,sg_time,szj_id,sg_language,sg_hot)
+        values(#{sg_name},#{sg_author},#{sg_time},#{szj_id},#{sg_language},#{sg_hot})
+    </insert>
+    <!--添加歌曲封面-->
+    <update id="addSongInfoImg" parameterType="java.lang.String">
+        update song_info set sg_imgAddress=#{sg_imgAddress} where sg_name=#{sg_name}
+    </update>
+    <!--添加歌曲文件-->
+    <update id="addSongInfoMusic" parameterType="java.lang.String">
+        update song_info set sg_address=#{sg_address} where sg_name=#{sg_name}
+    </update>
+    <!--通过ID查询歌曲-->
+    <select id="selectSongByID" parameterType="int" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language
+        from song_info where sg_id=#{sg_id}
+    </select>
+    <!--根据专辑ID查询专辑歌曲总数-->
+    <select id="selectSumSongByZJID" parameterType="int" resultType="int">
+        select count(*) from song_info where szj_id=#{szj_id}
+    </select>
+    <!--查询所有歌曲的名称-->
+    <select id="selectAllSongInfo" resultType="java.lang.String">
+        select sg_name from song_info
+    </select>
+    <!--向专辑添加已有歌曲,并更新-->
+    <update id="updateSongInfo" parameterType="com.cjj.entity.SongInfo">
+        update song_info set szj_id=#{szj_id} where sg_name=#{sg_name}
+    </update>
+    <!--获取首页新歌-->
+    <select id="selectNewSongInfo" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language,szj_id
+         from song_info where sg_new='new' limit 0,5
+    </select>
+    <!--向歌单添加已有歌曲,并更新-->
+    <update id="updateSongInfoToSL" parameterType="com.cjj.entity.SongInfo">
+        update song_info set sg_songList=#{sg_songList} where sg_name=#{sg_name}
+    </update>
+    <!--根据地区查询新歌-->
+    <select id="selectNewSongInfoByRG" parameterType="java.lang.String" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language from song_info
+        where sg_new='new' and sg_language=#{sg_language} limit 0,5
+    </select>
+    <!--根据歌手名查询所有歌曲-->
+    <select id="selectSongInfoByName" parameterType="java.lang.String" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_address,sg_imgAddress,sg_time,sg_language,szj_id from song_info
+        where  sg_author=#{sg_author}
+    </select>
+    <!--查询排行榜top10新歌-->
+    <select id="selectTopNewSongs" resultType="com.cjj.entity.SongInfo" parameterType="java.lang.String">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language,szj_id
+        from song_info where sg_new=#{sg_new} order by sg_topList limit 0,10
+    </select>
+    <!--查询排行榜top10热歌-->
+    <select id="selectTopHotSongs" resultType="com.cjj.entity.SongInfo" parameterType="java.lang.String">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language,szj_id
+        from song_info where sg_hot=#{sg_hot} order by sg_topList limit 0,10
+    </select>
+    <!--获取排行榜top10流行歌-->
+    <select id="selectTopPopSongs" resultType="com.cjj.entity.SongInfo" parameterType="java.lang.String">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language,szj_id
+        from song_info where sg_pop=#{sg_pop} order by sg_topList limit 0,10
+    </select>
+    <!--查询排行榜前4歌曲-->
+    <select id="selectTopFourSongs" parameterType="java.lang.String" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language from song_info
+        where sg_language=#{sg_language} order by sg_topList limit 0,4
+    </select>
+    <!--根据搜索内容获取相应歌曲-->
+    <select id="selectSongInfoByText" parameterType="java.lang.String" resultType="com.cjj.entity.SongInfo">
+        select sg_id,sg_name,sg_author,sg_address,sg_imgAddress,sg_time,sg_language,szj_id from song_info
+        where sg_name like CONCAT('%',#{text},'%') or sg_author like CONCAT('%',#{text},'%')
+    </select>
+    <!--查询所有歌曲总数-->
+    <select id="selectSumAllSong" resultType="int">
+        select count(*) from song_info
+    </select>
+    <!--根据分页数据index和显示的行数查询所有歌曲 -->
+    <select id="selectSongInfoTop" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SongInfo">
+         select sg_id,sg_name,sg_author,sg_imgAddress,sg_time,sg_songList,sg_language,szj_id,sg_hot,sg_new,
+         sg_topList,sg_pop from song_info limit #{index},5
+    </select>
+    <!--根据ID删除歌曲-->
+    <delete id="deleteSongInfoTop" parameterType="int">
+        delete from song_info where sg_id=#{sg_id}
+    </delete>
+    <!--更新歌曲信息-->
+    <update id="updateSongInfoTop" parameterType="com.cjj.entity.SongInfo">
+        update song_info
+        <set>
+            <if test="sg_songList!=null">
+                sg_songList=#{sg_songList},
+            </if>
+            <if test="szj_id!=0">
+                szj_id=#{szj_id},
+            </if>
+            <if test="sg_hot!=null">
+                sg_hot=#{sg_hot},
+            </if>
+            <if test="sg_new!=null">
+                sg_new=#{sg_new},
+            </if>
+            <if test="sg_topList!=null">
+                sg_topList=#{sg_topList},
+            </if>
+            <if test="sg_pop!=null">
+                sg_pop=#{sg_pop}
+            </if>
+        </set>
+        where sg_id=#{sg_id}
+    </update>
+</mapper>

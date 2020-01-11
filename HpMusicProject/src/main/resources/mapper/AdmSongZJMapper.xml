@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfAdminSongZJDao">
+    <!--获取专辑总数-->
+    <select id="selectSumSongZJ" resultType="int">
+        select count(*) from song_zj
+    </select>
+    <!--获取所有专辑-->
+    <select id="selectSongZJ" resultType="com.cjj.entity.SongZJ" parameterType="com.cjj.entity.Page">
+        select szj_id,szj_imgAddress,szj_author,szj_title,szj_detail,szj_releaseTime,szj_language
+        from song_zj limit #{index},5
+    </select>
+    <!--添加专辑-->
+    <insert id="addSongZJ" parameterType="com.cjj.entity.SongZJ">
+        insert into song_zj(szj_imgAddress,szj_author,szj_title,szj_detail,szj_releaseTime,szj_language)
+        values(#{szj_imgAddress},#{szj_author},#{szj_title},#{szj_detail},#{szj_releaseTime},#{szj_language})
+    </insert>
+    <!--根据专辑标题查询专辑ID-->
+    <select id="selectSongZJIDByTitle" parameterType="java.lang.String" resultType="int">
+        select szj_id from song_zj where szj_title=#{szj_title}
+    </select>
+    <!--添加专辑封面图-->
+    <update id="addSongZJImg" parameterType="java.lang.String">
+        update song_zj set szj_imgAddress=#{szj_imgAddress} where szj_title=#{szj_title}
+    </update>
+</mapper>

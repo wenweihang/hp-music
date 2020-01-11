@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.cjj.controller"/>
+    <!--配置视图解析器-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/page/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--文件解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="20971520"/>
+        <property name="maxInMemorySize" value="10240"/>
+
+    </bean>
+    <!--设置静态资源不过滤-->
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/layui/**" location="/layui/"/>
+    <mvc:resources mapping="/layer/**" location="/layer/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
+    <mvc:resources mapping="/page/admin/css/**" location="/page/admin/css/"/>
+    <mvc:resources mapping="/page/admin/img/**" location="/page/admin/img/"/>
+    <mvc:resources mapping="/page/admin/plugins/**" location="/page/admin/plugins/"/>
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/getAllUser"/>
+            <mvc:mapping path="/admin/loginAdminOut"/>
+            <mvc:mapping path="/admin/deleteUser"/>
+            <mvc:mapping path="/adminSongList/*"/>
+            <mvc:mapping path="/adminMemberInfo/*"/>
+            <mvc:mapping path="/adminSingerInfo/*"/>
+            <bean class="com.cjj.interceptor.AdmLoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/collect/*"/>
+            <mvc:mapping path="/member/*"/>
+            <mvc:mapping path="/download/*"/>
+            <mvc:exclude-mapping path="/user/registerUser"/>
+            <mvc:exclude-mapping path="/user/loginUser"/>
+            <mvc:exclude-mapping path="/user/loginUser"/>
+            <mvc:exclude-mapping path="/user/loginOut"/>
+            <mvc:exclude-mapping path="/user/CheckCode"/>
+            <bean class="com.cjj.interceptor.UserLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!--开启注解的支持-->
+    <mvc:annotation-driven/>
+
+</beans>

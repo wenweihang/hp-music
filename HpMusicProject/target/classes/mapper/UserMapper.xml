@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.cjj.dao.InfUserDao">
+    <!--验证账号是否存在-->
+    <select id="findByAct" resultType="java.lang.String" parameterType="java.lang.String">
+        select uer_act from user where uer_act=#{uer_act}
+    </select>
+    <!--根据用户账号查询用户所有订单总数-->
+    <select id="selectSumOrder" parameterType="java.lang.String" resultType="int">
+        select count(*) from user_order where uer_act=#{uer_act}
+    </select>
+    <!--查询用户所有订单信息-->
+    <select id="selectAllOrder" resultType="com.cjj.entity.UserOrder">
+        select uor_id,uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime
+        from user_order
+    </select>
+    <!--根据用户账号查询用户所有订单信息-->
+    <select id="selectOrderByAct" parameterType="java.lang.String" resultType="com.cjj.entity.UserOrder">
+        select uor_id,uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime
+        from user_order where uer_act=#{uer_act}
+    </select>
+    <!--根据分页数据index和显示的行数查询订单信息-->
+    <select id="selectOrderPages" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.UserOrder">
+        select uor_id,uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime
+        from user_order where uer_act=#{uer_act} limit #{index},7
+    </select>
+    <!--添加用户-->
+    <insert id="addUser" parameterType="com.cjj.entity.User">
+        insert into user(uer_name,uer_signature,uer_act,uer_pwd,uer_sex,uer_birthday,
+        uer_address,uer_create,uer_constellation,uer_headImg)values(#{uer_name},#{uer_signature},#{uer_act},#{uer_pwd},
+        #{uer_sex},#{uer_birthday},#{uer_address},#{uer_create},#{uer_constellation},#{uer_headImg})
+    </insert>
+    <!--核实用户的账号密码是否正确-->
+    <select id="findUser" resultType="com.cjj.entity.User" parameterType="java.lang.String">
+        select * from user where uer_act=#{uer_act} and uer_pwd=#{uer_pwd}
+    </select>
+    <!--根据用户id更新头像-->
+    <update id="updateImgUser"  parameterType="com.cjj.entity.User">
+        update user set uer_headImg=#{uer_headImg} where uer_id=#{uer_id}
+    </update>
+    <!--根据用户id更新用户信息-->
+    <update id="updateUser"  parameterType="com.cjj.entity.User">
+        update user set uer_name=#{uer_name},uer_signature=#{uer_signature},uer_sex=
+        #{uer_sex},uer_birthday=#{uer_birthday},uer_constellation=#{uer_constellation},
+        uer_address=#{uer_address} where uer_id=#{uer_id}
+    </update>
+    <!--根据邮件地址查找用户-->
+    <select id="findByEmailAddress" resultType="java.lang.String" parameterType="java.lang.String">
+        select uer_name from user where uer_emailAddress=#{uer_emailAddress}
+    </select>
+    <!--根据用户id更新用户密码-->
+    <update id="changePwd" parameterType="com.cjj.entity.User">
+        update user set uer_pwd=#{uer_pwd} where uer_id=#{uer_id}
+    </update>
+    <!--根据用户id更新绑定邮箱-->
+    <update id="emailBind" parameterType="com.cjj.entity.User">
+        update user set uer_emailAddress=#{uer_emailAddress} where uer_id=#{uer_id}
+    </update>
+    <!--添加用户登录记录-->
+    <insert id="addLogHistory" parameterType="com.cjj.entity.LogHistory">
+        <selectKey keyProperty="ulh_id" keyColumn="ulh_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id()
+        </selectKey>
+        insert into user_loghistory(uer_act,ulh_ip,ulh_address,ulh_time)values(#{uer_act},#{ulh_ip},#{ulh_address},#{ulh_time})
+    </insert>
+    <!--根据用户帐号查询用户所有历史记录信息-->
+    <select id="selectAllHistoryByAct" parameterType="java.lang.String" resultType="com.cjj.entity.LogHistory">
+        select ulh_id,uer_act,ulh_ip,ulh_address,ulh_time from user_loghistory where uer_act=#{uer_act}
+    </select>
+    <!--根据用户帐号查询用户历史记录总数-->
+    <select id="selectSumHisory" parameterType="java.lang.String" resultType="int">
+        select count(*) from user_loghistory where uer_act=#{uer_act}
+    </select>
+    <!--根据分页数据index和显示的行数查询历史记录 -->
+    <select id="selectHistoryPages" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.LogHistory">
+        select ulh_id,uer_act,ulh_ip,ulh_address,ulh_time from user_loghistory where uer_act=#{uer_act} limit #{index},5
+    </select>
+</mapper>

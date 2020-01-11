@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfMemberDao">
+    <!--查找该用户是否存在订单-->
+    <select id="findMemOrder" parameterType="java.lang.String" resultType="com.cjj.entity.UserOrder">
+        select uor_id,uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime
+        from user_order where uer_act=#{uer_act}
+    </select>
+    <!--根据订单号查找订单-->
+    <select id="findMemOrderByNumber" parameterType="java.lang.String" resultType="com.cjj.entity.UserOrder">
+        select uor_id,uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime
+        from user_order where uor_orderNumber=#{uor_orderNumber}
+    </select>
+    <!--添加会员下单信息-->
+    <insert id="addMemOrder" parameterType="com.cjj.entity.UserOrder">
+        insert into user_order(uor_orderNumber,uer_act,uor_type,uor_price,uor_state,uor_detail,uor_commodityType,uor_orderTime,uor_finishTime)
+        values(#{uor_orderNumber},#{uer_act},#{uor_type},#{uor_price},#{uor_state},#{uor_detail},#{uor_commodityType},#{uor_orderTime},#{uor_finishTime})
+    </insert>
+    <!--根据订单号更新会员订单信息-->
+    <update id="updMemOrder" parameterType="com.cjj.entity.UserOrder">
+        update user_order set uor_state=#{uor_state},uor_finishTime=#{uor_finishTime} where uor_orderNumber=#{uor_orderNumber}
+    </update>
+    <!--添加用户充值会员信息-->
+    <insert id="addMemberUser" parameterType="com.cjj.entity.MemberInfo">
+      insert into member_info(uer_act,start_time,end_time,mif_type)values(#{uer_act},#{start_time},#{end_time},#{mif_type})
+    </insert>
+    <!--查找该用户是否为会员-->
+    <select id="findByAct" parameterType="java.lang.String" resultType="com.cjj.entity.MemberInfo">
+        select mif_id,uer_act,start_time,end_time,mif_type from member_info where uer_act=#{uer_act}
+    </select>
+    <insert id="addMemPriceType" parameterType="com.cjj.entity.MemberPrice">
+       insert into member_price(mpr_type,mpr_price,mpr_day)values(#{mpr_type},#{mpr_price},#{mpr_day})
+    </insert>
+</mapper>

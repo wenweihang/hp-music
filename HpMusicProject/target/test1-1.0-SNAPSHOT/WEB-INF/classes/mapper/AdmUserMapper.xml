@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfAdminUserDao">
+    <!--验证账号是否存在-->
+    <select id="findByAct" resultType="int" parameterType="java.lang.String">
+        select count(*) from admuser where admuer_act=#{admuer_act}
+    </select>
+    <!--核实用户的账号密码是否正确-->
+    <select id="findAdminUser" resultType="com.cjj.entity.AdminUser" parameterType="java.lang.String">
+        select admuer_id,admuer_name,admuer_act,admuer_pwd,admuer_headImg from admuser where
+        admuer_act=#{admuer_act} and admuer_pwd=#{admuer_pwd}
+    </select>
+    <!--根据用户帐号查询用户历史记录总数-->
+    <select id="selectSumUser" resultType="int">
+        select count(*) from user
+    </select>
+    <!--根据分页数据index和显示的行数查询所有用户 -->
+    <select id="selectAllUser" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.User">
+        select uer_id,uer_name,uer_act,uer_sex,uer_create,uer_emailAddress,uer_headImg from user limit #{index},5
+    </select>
+    <!--根据用户账号删除用户-->
+    <delete id="deleteUser" parameterType="java.lang.String" >
+        delete from user where uer_act=#{uer_act}
+    </delete>
+    <!--查询所有管理员账号-->
+    <select id="selectAllAdmUser" resultType="com.cjj.entity.AdminUser">
+        select admuer_id,admuer_name,admuer_act,admuer_pwd,admuer_headImg from admuser
+    </select>
+    <!--根据管理员账号删除管理员用户-->
+    <delete id="deleteAdmUser" parameterType="java.lang.String">
+        delete from admuser where admuer_act=#{admuer_act}
+    </delete>
+</mapper>

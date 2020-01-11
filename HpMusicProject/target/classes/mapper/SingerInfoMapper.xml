@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjj.dao.InfSingerInfoDao">
+    <!--查询歌手总数-->
+    <select id="selectSumSingerInfo" resultType="int">
+         select count(*) from singer_info
+    </select>
+    <!--根据分页数据index和显示的行数查询歌手信息-->
+    <select id="selectSingerInfoPage" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+         from singer_info order by sgr_hot desc limit #{index},36
+    </select>
+    <!--根据首字母查询歌手总数-->
+    <select id="selectSumSingerInfoByFL" resultType="int" parameterType="java.lang.String">
+        select count(*) from singer_info where sgr_firstLetter=#{sgr_firstLetter}
+    </select>
+    <!--根据分页数据index和显示的行数,首字母查询歌手信息-->
+    <select id="selectSingerInfoPageByFL" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+        from singer_info where sgr_firstLetter=#{sgr_firstLetter} order by sgr_hot desc limit #{index},36
+    </select>
+    <!--根据地区查询歌手总数-->
+    <select id="selectSumSingerInfoByRG" resultType="int" parameterType="java.lang.String">
+        select count(*) from singer_info where sgr_region=#{sgr_region}
+    </select>
+    <!--根据分页数据index和显示的行数,地区查询歌手信息-->
+    <select id="selectSingerInfoPageByRG" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+        from singer_info where sgr_region=#{sgr_region} order by sgr_hot desc limit #{index},36
+    </select>
+    <!--根据首字母和地区查询歌手总数-->
+    <select id="selectSumSingerInfoByFLANDRG" resultType="int" parameterType="java.lang.String">
+        select count(*) from singer_info where sgr_firstLetter=#{sgr_firstLetter} and sgr_region=#{sgr_region}
+    </select>
+    <!--根据分页数据index和显示的行数,地区查询歌手信息-->
+    <select id="selectSingerInfoPageByFLANDRG" parameterType="com.cjj.entity.Page" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+        from singer_info where sgr_firstLetter=#{sgr_firstLetter} and sgr_region=#{sgr_region}
+        order by sgr_hot desc limit #{index},36
+    </select>
+    <select id="selectSingerInfoPageMain" resultType="com.cjj.entity.SingerInfo">
+        select sgr_id,sgr_name,sgr_sex,sgr_imgAddress,sgr_detail,sgr_hot,sgr_firstLetter,sgr_region
+        from singer_info where sgr_hot='z'
+    </select>
+</mapper>

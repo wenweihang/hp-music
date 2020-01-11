@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cjj.dao.InfSongZJDao">
+    <!--根据专辑ID查询专辑标题-->
+    <select id="selectZJtitleByID" parameterType="int" resultType="java.lang.String">
+        select szj_title from song_zj where szj_id=#{szj_id}
+    </select>
+    <!--根据专辑ID查询专辑介绍-->
+    <select id="selectZJdetailByID" parameterType="int" resultType="java.lang.String">
+        select szj_detail from song_zj where szj_id=#{szj_id}
+    </select>
+    <!--根据歌手名称查询所有专辑-->
+    <select id="selectSongZJByName" parameterType="java.lang.String" resultType="com.cjj.entity.SongZJ">
+        select szj_id,szj_imgAddress,szj_author,szj_title,szj_detail,szj_releaseTime,szj_language from song_zj
+        where szj_author=#{szj_author}
+    </select>
+</mapper>
